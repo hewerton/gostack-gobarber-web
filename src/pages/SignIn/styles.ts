@@ -9,6 +9,7 @@ export const Container = styled.div`
   display: flex;
   align-items: stretch;
 `;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,42 +30,6 @@ export const Content = styled.div`
       margin-bottom: 24px;
     }
 
-    input {
-      background-color: #232129;
-      border-radius: 5px;
-      border: 2px solid #232129;
-      padding: 16px;
-      width: 100%;
-      color: #F4EDE8;
-
-      & + input {
-        margin-top: 8px;
-      }
-
-      &::placeholder {
-        color: #666360;
-      }
-    }
-
-    button {
-      background-color: #ff9000;
-      border-radius: 5px;
-      border: 0;
-      padding: 16px;
-      margin-top: 24px;
-      margin-bottom: 24px;
-      width: 100%;
-
-      color: #312e38;
-      font-weight: 500;
-
-      transition: background-color 0.2s;
-
-      &:hover {
-        background-color: ${shade(0.2, '#ff9000')};
-      }
-    }
-
     a {
       color: #f4ede8;
       text-decoration: none;
@@ -77,23 +42,23 @@ export const Content = styled.div`
   }
 
   > a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FF9000;
-      text-decoration: none;
-      transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff9000;
+    text-decoration: none;
+    transition: color 0.2s;
 
-      &:hover {
-        color: ${shade(0.2, '#FF9000')};
-      }
+    &:hover {
+      color: ${shade(0.2, '#FF9000')};
+    }
 
-      svg {
-        margin-right: 24px;
-      }
+    svg {
+      margin-right: 24px;
     }
   }
 `;
+
 export const Background = styled.div`
   flex: 1;
   background: url(${signInBackgroundImg}) no-repeat center;
