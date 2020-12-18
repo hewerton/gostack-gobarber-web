@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 
 import api from '../services/api';
 
@@ -10,6 +10,7 @@ interface Credenticals {
 interface AuthContextData {
   user: object;
   signIn(credential: Credenticals): Promise<void>;
+  signOut(): void;
 }
 
 interface AuthState {
@@ -20,6 +21,16 @@ interface AuthState {
 export const AuthContext = createContext<AuthContextData>(
   {} as AuthContextData,
 );
+
+export const useAuth = (): AuthContextData => {
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error('useAuth must be used inside AuthContextProvider');
+  }
+
+  return authContext;
+};
 
 export const AuthContextProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
@@ -41,8 +52,15 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     setData({ token, user });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@GoBarber:token');
+    localStorage.removeItem('@GoBarber:user');
+
+    setData({} as AuthState);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
