@@ -37,7 +37,12 @@ const SignIn: React.FC = () => {
 
         auth.signIn(data);
       } catch (err) {
-        formRef.current?.setErrors(getValidationErrors(err));
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+        }
+
+        // Disparar Toast
       }
     },
     [auth],
