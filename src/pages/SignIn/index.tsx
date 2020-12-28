@@ -44,10 +44,15 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(errors);
         }
 
-        addToast();
+        addToast({
+          type: 'sucess',
+          title: 'Erro de autenticação',
+          message:
+            'Não foi possível realizer login. Verifique suas credenciais',
+        });
       }
     },
-    [auth],
+    [addToast, auth],
   );
   return (
     <S.Container>
