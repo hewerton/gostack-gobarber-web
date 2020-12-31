@@ -46,7 +46,7 @@ const SignIn: React.FC = () => {
         }
 
         addToast({
-          type: 'sucess',
+          type: 'error',
           title: 'Erro de autenticação',
           message:
             'Não foi possível realizer login. Verifique suas credenciais',
@@ -58,25 +58,32 @@ const SignIn: React.FC = () => {
   return (
     <S.Container>
       <S.Content>
-        <img src={logoImg} alt="GoBarber Logo" />
+        <S.AnimationContainer>
+          <img src={logoImg} alt="GoBarber Logo" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu logon</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu logon</h1>
 
-          <Input icon={FiMail} name="email" type="text" placeholder="E-mail" />
-          <Input
-            icon={FiLock}
-            name="password"
-            type="password"
-            placeholder="Senha"
-          />
-          <Button type="submit">Entrar</Button>
-          <a href="forgot">Esqueci minha senha</a>
-        </Form>
-        <Link to="/signup">
-          <FiLogIn />
-          Criar conta
-        </Link>
+            <Input
+              icon={FiMail}
+              name="email"
+              type="text"
+              placeholder="E-mail"
+            />
+            <Input
+              icon={FiLock}
+              name="password"
+              type="password"
+              placeholder="Senha"
+            />
+            <Button type="submit">Entrar</Button>
+            <a href="forgot">Esqueci minha senha</a>
+          </Form>
+          <Link to="/signup">
+            <FiLogIn />
+            Criar conta
+          </Link>
+        </S.AnimationContainer>
       </S.Content>
       <S.Background />
     </S.Container>
